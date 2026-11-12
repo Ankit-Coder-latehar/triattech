@@ -86,9 +86,9 @@ export default function About() {
 
               {/* Connecting lines (decorative) */}
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 320 320">
-                <line x1="160" y1="160" x2="52"  y2="52"  stroke="#CC0000" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
-                <line x1="160" y1="160" x2="268" y2="52"  stroke="#CC0000" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
-                <line x1="160" y1="160" x2="160" y2="268" stroke="#CC0000" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
+                <line x1="160" y1="160" x2="52"  y2="52"  stroke="#0F1C3F" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
+                <line x1="160" y1="160" x2="268" y2="52"  stroke="#0F1C3F" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
+                <line x1="160" y1="160" x2="160" y2="268" stroke="#0F1C3F" strokeWidth="1" strokeDasharray="4 4" opacity="0.3"/>
               </svg>
             </div>
           </div>

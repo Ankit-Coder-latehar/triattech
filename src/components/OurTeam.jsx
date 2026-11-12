@@ -1,211 +1,227 @@
-/* Social icons — correct prefix per icon type */
+/* Social icons */
 const socials = [
-  { icon: 'fa-linkedin-in', prefix: 'fab' },
-  { icon: 'fa-twitter',     prefix: 'fab' },
-  { icon: 'fa-envelope',    prefix: 'fas' },   /* ← was wrongly "fab", fixed to "fas" */
+  { icon: 'fa-linkedin-in', prefix: 'fab', label: 'LinkedIn' },
+  { icon: 'fa-twitter',     prefix: 'fab', label: 'Twitter'  },
+  { icon: 'fa-envelope',    prefix: 'fas', label: 'Email'    },
+]
+
+const members = [
+  {
+    name:     'Sarah Mitchell',
+    role:     'Chief Executive Officer',
+    quote:    'Building elite tech teams is an art — we\'ve mastered it over 15 years.',
+    image:    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face',
+    featured: false,
+    tag:      '15 yrs experience',
+  },
+  {
+    name:     'James Okonkwo',
+    role:     'Head of Talent Solutions',
+    quote:    'Every placement is a partnership — we invest deeply in both sides of the relationship.',
+    image:    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+    featured: true,
+    tag:      'Top Performer 2024',
+  },
+  {
+    name:     'Richard Holt',
+    role:     'VP Global Partnerships',
+    quote:    'Our reach is global, but our relationships are always deeply personal.',
+    image:    'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face',
+    featured: false,
+    tag:      '50+ countries',
+  },
+]
+
+const stats = [
+  { icon: 'fa-users',       num: '1,200+', label: 'Team Members' },
+  { icon: 'fa-globe',       num: '50+',    label: 'Countries' },
+  { icon: 'fa-award',       num: '15+',    label: 'Awards Won' },
+  { icon: 'fa-heart',       num: '98%',    label: 'Satisfaction' },
 ]
 
 export default function OurTeam() {
-  const members = [
-    {
-      name:    'Sarah Mitchell',
-      role:    'Chief Executive Officer',
-      quote:   `"Building elite tech teams is an art — we've mastered it."`,
-      initials:'SM',
-      featured: false,
-      /* Use only standard Tailwind opacity values (multiples of 5) */
-      circlesBg: [
-        { w: 112, h: 112, top: -24, left: -32,  opacity: 0.12 }, /* ~w-28 h-28 */
-        { w: 40,  h: 40,  top:  32, left:  64,  opacity: 1    }, /* solid brand dot */
-        { w: 24,  h: 24,  top:   8, right: 16,  opacity: 0.5  },
-      ],
-    },
-    {
-      name:    'James Okonkwo',
-      role:    'Head of Talent Solutions',
-      quote:   '"Every placement is a partnership — we invest in both sides."',
-      initials:'JO',
-      featured: true,
-      circlesBg: [
-        { w: 144, h: 144, top: -40, left: '50%', marginLeft: -72, opacity: 0.08 },
-        { w: 32,  h: 32,  top:  16, left:  24,   opacity: 1 },
-        { w: 20,  h: 20,  top:  40, right: 32,   opacity: 0.5 },
-        { w: 44,  h: 44,  bottom: 0, left: 32,   opacity: 0.3 },
-      ],
-    },
-    {
-      name:    'Richard Holt',
-      role:    'VP Global Partnerships',
-      quote:   '"Our reach is global; our relationships are personal."',
-      initials:'RH',
-      featured: false,
-      circlesBg: [
-        { w: 112, h: 112, top: -24, right: -32, opacity: 0.12 },
-        { w: 36,  h: 36,  top:  24, right: 56,  opacity: 0.5 },
-        { w: 20,  h: 20,  top:   8, left:  24,  opacity: 1 },
-      ],
-    },
-  ]
-
-  const stats = [
-    { icon: 'fa-users',  num: '1,200+', label: 'Team Members Worldwide' },
-    { icon: 'fa-globe',  num: '50+',    label: 'Countries We Operate In' },
-    { icon: 'fa-award',  num: '15+',    label: 'Industry Awards Won' },
-    { icon: 'fa-heart',  num: '98%',    label: 'Employee Satisfaction' },
-  ]
-
   return (
-    <section id="team" className="relative py-20 bg-white overflow-hidden">
+    <section id="team" className="relative py-24 overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #f8faff 0%, #ffffff 40%, #EFF6FF 100%)' }}>
 
-      {/* Faint gradient blobs — decorative */}
+      {/* ── Decorative background shapes ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-brand/5 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-brand/5 blur-3xl" />
+        {/* Large soft circle top-left */}
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(15,28,63,0.06) 0%, transparent 70%)' }} />
+        {/* Large soft circle bottom-right */}
+        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(30,58,138,0.07) 0%, transparent 70%)' }} />
+        {/* Dot grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #0F1C3F 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
 
         {/* ── Section header ── */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block bg-brand-pale text-brand text-xs font-bold
-                           tracking-widest uppercase px-4 py-1.5 rounded-full mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 bg-brand text-white text-xs font-bold
+                          tracking-widest uppercase px-5 py-2 rounded-full mb-6 shadow-brand">
+            <i className="fas fa-users text-xs"></i>
             Our People
-          </span>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-5">
-            Our Culture Shapes{' '}
-            <span className="text-brand">Everything We Do</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight mb-6">
+            Meet the Minds Behind{' '}
+            <span className="relative inline-block">
+              <span className="text-brand">Triatech</span>
+              {/* Underline accent */}
+              <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 200 6" preserveAspectRatio="none">
+                <path d="M0,5 Q50,0 100,4 Q150,8 200,3" stroke="#0F1C3F" strokeWidth="2.5"
+                      fill="none" strokeLinecap="round" opacity="0.4"/>
+              </svg>
+            </span>
           </h2>
-          <p className="text-gray-500 text-base leading-relaxed mb-8">
-            Our people, clients, and consultants matter to us more than anything. We are driven
-            by a culture of purpose, shared values, and growth. See who we are and how we roll —
-            it&apos;s pretty unique.
+          <p className="text-gray-500 text-lg leading-relaxed">
+            Our people are our greatest asset. Driven by purpose, shaped by culture, and united by
+            a passion for connecting world-class talent with industry-leading organisations.
           </p>
-          <a
-            href="#about"
-            className="inline-flex items-center gap-2 border-2 border-brand text-brand font-semibold
-                       px-8 py-3.5 rounded-full hover:bg-brand hover:text-white
-                       transition-all duration-300 hover:-translate-y-0.5 hover:shadow-brand"
-          >
-            Explore Our Culture <i className="fa fa-arrow-right text-sm"></i>
-          </a>
         </div>
 
         {/* ── Team cards ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-end pb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 mb-20">
           {members.map((member, i) => (
             <div
               key={i}
-              /* Extra top padding so absolute circles don't clip the grid row above */
-              className={`relative pt-10 group ${i === 1 ? 'md:-mt-6' : ''}`}
+              className={`group relative flex flex-col items-center text-center
+                          rounded-3xl transition-all duration-500
+                          hover:-translate-y-3
+                          ${member.featured ? 'md:-mt-6' : ''}`}
             >
-              {/* Decorative circles — using inline styles avoids Tailwind scanning issues */}
-              {member.circlesBg.map((c, j) => (
-                <div
-                  key={j}
-                  aria-hidden
-                  style={{
-                    position:   'absolute',
-                    width:       c.w,
-                    height:      c.h,
-                    top:         c.top  !== undefined ? c.top  : undefined,
-                    bottom:      c.bottom !== undefined ? c.bottom : undefined,
-                    left:        c.left !== undefined ? c.left : undefined,
-                    right:       c.right !== undefined ? c.right : undefined,
-                    marginLeft:  c.marginLeft,
-                    borderRadius:'50%',
-                    backgroundColor: `rgba(204, 0, 0, ${c.opacity})`,
-                    zIndex:      j === 0 ? 0 : 2,
-                    transition:  'transform 0.5s ease',
-                    pointerEvents: 'none',
-                  }}
-                  className="group-hover:scale-110"
-                />
-              ))}
-
-              {/* Card */}
+              {/* Card background */}
               <div
-                className={`relative z-10 bg-white rounded-3xl overflow-hidden
-                             border shadow-card group-hover:shadow-card-lg
-                             transition-all duration-500 group-hover:-translate-y-2
+                className={`absolute inset-0 rounded-3xl transition-all duration-500
                              ${member.featured
-                               ? 'border-brand/30 ring-2 ring-brand/15'
-                               : 'border-gray-100'}`}
-              >
+                               ? 'bg-brand shadow-brand-lg'
+                               : 'bg-white border border-gray-100 shadow-card group-hover:shadow-card-lg'}`}
+              />
 
-                {/* Avatar area */}
-                <div
-                  className={`relative flex items-end justify-center overflow-hidden
-                               ${member.featured ? 'h-80' : 'h-72'}`}
-                  style={{
-                    background: member.featured
-                      ? 'linear-gradient(to bottom, #FFF0F0, #FFE0E0, #fff)'
-                      : 'linear-gradient(to bottom, #f9fafb, #fff0f0 60%, #fff)',
-                  }}
-                >
-                  {/* Circle halo behind avatar */}
+              {/* Top accent bar */}
+              {!member.featured && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 rounded-b-full
+                                bg-gradient-to-r from-brand to-brand-light
+                                transition-all duration-500 group-hover:w-24" />
+              )}
+
+              {/* Card content */}
+              <div className="relative z-10 flex flex-col items-center px-8 pt-10 pb-8 w-full">
+
+                {/* ── Circular photo with layered rings ── */}
+                <div className="relative mb-7">
+                  {/* Animated pulse ring (featured only) */}
+                  {member.featured && (
+                    <div className="absolute inset-0 rounded-full animate-ping opacity-20 scale-110"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.4)', animationDuration: '2.5s' }} />
+                  )}
+
+                  {/* Outer decorative ring */}
                   <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                                rounded-full transition-transform duration-500 group-hover:scale-105"
+                    className="absolute rounded-full transition-all duration-500 group-hover:scale-110"
                     style={{
-                      width:  member.featured ? 220 : 192,
-                      height: member.featured ? 220 : 192,
-                      backgroundColor: 'rgba(204,0,0,0.08)',
-                      boxShadow: `0 0 0 ${member.featured ? 12 : 8}px rgba(204,0,0,0.06)`,
+                      inset: '-8px',
+                      borderRadius: '50%',
+                      border: member.featured
+                        ? '2px solid rgba(255,255,255,0.3)'
+                        : '2px dashed rgba(15,28,63,0.2)',
                     }}
                   />
 
-                  {/* Initials avatar */}
+                  {/* Gradient ring */}
                   <div
-                    className="relative z-10 rounded-full flex items-center justify-center
-                               font-black text-white transition-transform duration-300
-                               group-hover:scale-105"
+                    className="absolute rounded-full transition-all duration-500"
                     style={{
-                      width:      member.featured ? 148 : 120,
-                      height:     member.featured ? 148 : 120,
-                      fontSize:   member.featured ? '2.5rem' : '2rem',
-                      background: 'linear-gradient(135deg, #CC0000, #990000)',
-                      boxShadow:  '0 8px 32px rgba(204,0,0,0.4)',
+                      inset: '-4px',
+                      borderRadius: '50%',
+                      background: member.featured
+                        ? 'linear-gradient(135deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1))'
+                        : 'linear-gradient(135deg, #0F1C3F, #1E3A8A)',
+                      padding: '3px',
                     }}
-                  >
-                    {member.initials}
-                  </div>
+                  />
 
-                  {/* Featured badge */}
-                  {member.featured && (
-                    <div className="absolute top-4 right-4 bg-brand text-white text-xs font-bold
-                                    px-3 py-1.5 rounded-full shadow-brand flex items-center gap-1.5
-                                    z-20">
-                      <i className="fas fa-star text-yellow-300 text-xs"></i> Featured
-                    </div>
-                  )}
+                  {/* White gap */}
+                  <div className="absolute rounded-full bg-white"
+                    style={{ inset: '-1px', borderRadius: '50%' }} />
+
+                  {/* The photo */}
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    loading="lazy"
+                    className="relative z-10 rounded-full object-cover object-top block
+                               transition-transform duration-500 group-hover:scale-105"
+                    style={{
+                      width:  member.featured ? 164 : 140,
+                      height: member.featured ? 164 : 140,
+                    }}
+                  />
+
+                  {/* Tag badge */}
+                  <div
+                    className={`absolute -bottom-3 left-1/2 -translate-x-1/2 z-20
+                                 whitespace-nowrap text-xs font-bold px-3 py-1 rounded-full
+                                 shadow-md border
+                                 ${member.featured
+                                   ? 'bg-white text-brand border-white'
+                                   : 'bg-brand text-white border-brand'}`}
+                  >
+                    {member.featured && <i className="fas fa-star text-yellow-400 mr-1 text-xs"></i>}
+                    {member.tag}
+                  </div>
                 </div>
 
-                {/* Text info */}
-                <div className="px-6 pt-5 pb-6 text-center">
-                  <h3 className="text-lg font-extrabold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-brand text-xs font-bold tracking-widest uppercase mb-3">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-500 text-sm italic leading-relaxed mb-5">
+                {/* Spacer for badge */}
+                <div className="h-4" />
+
+                {/* Name */}
+                <h3 className={`text-xl font-black mb-1 ${member.featured ? 'text-white' : 'text-gray-900'}`}>
+                  {member.name}
+                </h3>
+
+                {/* Role */}
+                <p className={`text-xs font-bold tracking-widest uppercase mb-5
+                               ${member.featured ? 'text-blue-200' : 'text-brand'}`}>
+                  {member.role}
+                </p>
+
+                {/* Divider */}
+                <div className={`w-10 h-px mb-5 rounded-full transition-all duration-300 group-hover:w-20
+                                 ${member.featured ? 'bg-white/30' : 'bg-brand/20'}`} />
+
+                {/* Quote */}
+                <div className="relative mb-6">
+                  <i className={`fas fa-quote-left absolute -top-2 -left-1 text-2xl opacity-20
+                                 ${member.featured ? 'text-white' : 'text-brand'}`}></i>
+                  <p className={`text-sm leading-relaxed italic pl-5
+                                 ${member.featured ? 'text-blue-100' : 'text-gray-500'}`}>
                     {member.quote}
                   </p>
+                </div>
 
-                  {/* Social icons — correct prefix per type */}
-                  <div className="flex items-center justify-center gap-2">
-                    {socials.map((s, j) => (
-                      <a
-                        key={j}
-                        href="#"
-                        className="w-9 h-9 rounded-full border border-gray-200 flex items-center
-                                   justify-center text-gray-400 text-sm
-                                   hover:bg-brand hover:border-brand hover:text-white
-                                   transition-all duration-200"
-                        aria-label={s.icon}
-                      >
-                        <i className={`${s.prefix} ${s.icon}`}></i>
-                      </a>
-                    ))}
-                  </div>
+                {/* Social icons */}
+                <div className="flex items-center justify-center gap-2 mt-auto">
+                  {socials.map((s, j) => (
+                    <a
+                      key={j}
+                      href="#"
+                      aria-label={s.label}
+                      className={`w-9 h-9 rounded-full flex items-center justify-center text-sm
+                                  transition-all duration-200
+                                  ${member.featured
+                                    ? 'border border-white/30 text-white/70 hover:bg-white hover:text-brand hover:border-white'
+                                    : 'border border-gray-200 text-gray-400 hover:bg-brand hover:border-brand hover:text-white'}`}
+                    >
+                      <i className={`${s.prefix} ${s.icon}`}></i>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
@@ -213,26 +229,49 @@ export default function OurTeam() {
         </div>
 
         {/* ── Stats strip ── */}
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              className="bg-brand-pale border border-red-100 rounded-2xl px-5 py-6 text-center
-                         hover:bg-brand hover:border-brand group transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-brand cursor-default"
-            >
-              <i className={`fas ${s.icon} text-brand text-2xl mb-2 block
-                             group-hover:text-white transition-colors`}></i>
-              <strong className="block text-2xl font-black text-brand mb-1
-                                 group-hover:text-white transition-colors leading-none">
-                {s.num}
-              </strong>
-              <span className="text-xs text-gray-500 font-medium leading-tight block
-                               group-hover:text-white/80 transition-colors">
-                {s.label}
-              </span>
-            </div>
-          ))}
+        <div
+          className="rounded-3xl p-1 shadow-brand-lg"
+          style={{ background: 'linear-gradient(135deg, #0F1C3F, #1E3A8A)' }}
+        >
+          <div className="bg-white/5 rounded-[22px] grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="flex flex-col items-center justify-center py-8 px-4 group cursor-default"
+              >
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center mb-3
+                              transition-all duration-300 group-hover:scale-110"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.12)' }}
+                >
+                  <i className={`fas ${s.icon} text-white text-lg`}></i>
+                </div>
+                <strong className="block text-3xl font-black text-white leading-none mb-1">
+                  {s.num}
+                </strong>
+                <span className="text-xs text-blue-200 font-medium tracking-wide">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Bottom CTA ── */}
+        <div className="text-center mt-12">
+          <p className="text-gray-500 text-sm mb-4">
+            Want to be part of our story?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2.5 bg-brand text-white font-bold
+                       px-8 py-3.5 rounded-full shadow-brand
+                       hover:shadow-brand-lg hover:-translate-y-0.5
+                       transition-all duration-300"
+          >
+            <i className="fas fa-paper-plane text-sm"></i>
+            Join Our Team
+          </a>
         </div>
 
       </div>

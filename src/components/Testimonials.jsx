@@ -17,6 +17,14 @@ const slides = [
     initials: 'LP', name: 'Laura Petit', role: 'HR Director, LogiSoft',
     text: '"Triatech\'s permanent recruitment process is thorough and genuinely adds value. Every hire they\'ve made for us has integrated brilliantly — we consider them a true talent partner."',
   },
+  {
+    initials: 'DW', name: 'Daniel Whitmore', role: 'CEO, NexGen Robotics',
+    text: '"From initial brief to final placement, Triatech\'s process was seamless. They didn\'t just fill a vacancy — they found us a lead AI architect who\'s already transformed our R&D output in just two months."',
+  },
+  {
+    initials: 'PV', name: 'Priya Verma', role: 'Head of Digital, GreenPulse Energy',
+    text: '"We were sceptical about outsourcing our digital transformation hiring, but Triatech changed our minds completely. Their consultants are sharp, honest, and deeply committed to long-term cultural fit — not just quick placements."',
+  },
 ]
 
 export default function Testimonials() {
@@ -72,6 +80,9 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
             What Our Clients <span className="text-brand">Say</span>
           </h2>
+          <p className="text-gray-500 text-sm mt-3">
+            Trusted by industry leaders worldwide — here is what they have to say about partnering with Triatech.
+          </p>
         </div>
 
         {/* Carousel */}
@@ -79,6 +90,7 @@ export default function Testimonials() {
           <div
             ref={trackRef}
             className="testimonials-track flex gap-6"
+            style={{ transition: 'transform 0.5s cubic-bezier(0.4,0,0.2,1)' }}
             onTouchStart={e => { startX.current = e.touches[0].clientX }}
             onTouchEnd={e => {
               const diff = startX.current - e.changedTouches[0].clientX
@@ -89,21 +101,33 @@ export default function Testimonials() {
               <div
                 key={i}
                 className="testimonial-card flex-shrink-0 w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]
-                           border border-gray-200 rounded-2xl p-6 hover:border-brand hover:shadow-card
-                           transition-all duration-300"
+                           border border-gray-200 rounded-2xl p-7 hover:border-brand hover:shadow-card
+                           transition-all duration-300 bg-white group"
               >
-                <i className="fa fa-quote-left text-2xl text-brand/30 mb-4 block"></i>
-                <p className="text-gray-700 text-sm leading-relaxed italic mb-6">{s.text}</p>
-                <div className="flex items-center gap-3">
+                {/* Stars */}
+                <div className="text-amber-400 text-sm mb-4">★★★★★</div>
+
+                {/* Quote icon */}
+                <i className="fa fa-quote-left text-2xl text-brand/20 mb-3 block"></i>
+
+                {/* Review text */}
+                <p className="text-gray-700 text-sm leading-relaxed italic mb-6 flex-1">{s.text}</p>
+
+                {/* Author */}
+                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
                   <div className="w-11 h-11 bg-gradient-to-br from-brand to-brand-dark text-white
-                                  rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0">
+                                  rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0
+                                  group-hover:scale-110 transition-transform duration-300">
                     {s.initials}
                   </div>
                   <div className="flex-1">
-                    <strong className="block text-gray-900 text-sm">{s.name}</strong>
+                    <strong className="block text-gray-900 text-sm font-bold">{s.name}</strong>
                     <span className="text-gray-500 text-xs">{s.role}</span>
                   </div>
-                  <div className="text-amber-400 text-sm">★★★★★</div>
+                  <div className="w-8 h-8 rounded-full bg-brand-pale flex items-center justify-center
+                                  group-hover:bg-brand transition-colors duration-300">
+                    <i className="fas fa-check text-brand text-xs group-hover:text-white transition-colors duration-300"></i>
+                  </div>
                 </div>
               </div>
             ))}
@@ -111,11 +135,11 @@ export default function Testimonials() {
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-center gap-4 mt-8">
+        <div className="flex items-center justify-center gap-4 mt-10">
           <button
             onClick={handlePrev}
             className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center
-                       text-gray-700 hover:bg-brand hover:border-brand hover:text-white transition-all"
+                       text-gray-700 hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
           >
             <i className="fa fa-chevron-left text-sm"></i>
           </button>
@@ -134,13 +158,18 @@ export default function Testimonials() {
           <button
             onClick={handleNext}
             className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center
-                       text-gray-700 hover:bg-brand hover:border-brand hover:text-white transition-all"
+                       text-gray-700 hover:bg-brand hover:border-brand hover:text-white transition-all duration-300"
           >
             <i className="fa fa-chevron-right text-sm"></i>
           </button>
         </div>
+
+        {/* Review count badge */}
+        <p className="text-center text-gray-400 text-xs mt-6">
+          <i className="fas fa-shield-alt text-brand mr-1"></i>
+          Showing {slides.length} verified client reviews
+        </p>
       </div>
     </section>
   )
 }
-
